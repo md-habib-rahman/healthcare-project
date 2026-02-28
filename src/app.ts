@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from "express";
-import { prisma } from "./app/lib/prisma";
-import { specialityRouter } from "./app/modules/speciality/speciality.route";
+
 import { indexRouter } from "./app/routes";
 
 const app: Application = express();
@@ -16,17 +15,12 @@ app.use("/api/v1", indexRouter)
 
 // Basic route
 app.get('/', async (req: Request, res: Response) => {
-	const speciality = await prisma.speciality.create({
-		data: {
-			title: "cardiology"
-		}
-	})
+	
 	res.status(200).json({
 		success: true,
-		message: "API is working",
-		data: speciality
+		message: "API is working",		
 	})
-	// res.send('Hello, TypeScript + Express!');
+	
 });
 
 
